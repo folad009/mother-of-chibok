@@ -162,7 +162,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.25, ease: "easeOut" }}
                 className="p-6 sm:p-10"
               >
-                <p className="text-gray-200 mb-4 text-sm">
+                <p className="text-gray-200 mb-10 text-sm">
                   <span className="pl-20">The headlines may have faded, and the world may have moved on</span><br/>
                   <span className="pl-10">But in Chibok, the mothers still carry faith like a seed in their hands.</span> <br/>
                   <span className="pl-24">Send them a short message of hope as they continue to wait.</span>
@@ -183,10 +183,10 @@ export default function LandingPage() {
                   </Button>
                 </div>
 
-                <div className="mx-auto">
+                <div className="text-center mt-32">
                   <Button onClick={() => setOpen(false)} className="mt-4 text-white text-center gap-2">
-                  <span>Close</span>
-                  <X className="w-4 h-4" />
+                  <span>Close <br/><X className="w-4 h-4" /></span> 
+                  
                 </Button>
                 </div>
                 
