@@ -41,7 +41,9 @@ export default function Loader({ onFinish }: LoaderProps) {
   ] as const;
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      onUpdate: () => setProgress(Math.round(tl.progress() * 100))
+    });
 
     // Vertical line/progress
     tl.fromTo(
@@ -51,7 +53,6 @@ export default function Loader({ onFinish }: LoaderProps) {
         scaleY: 1,
         duration: 3,
         ease: "slow(0.9, 0.9, false)",
-        onUpdate: () => setProgress(Math.round(tl.progress() * 100)),
       }
     );
 

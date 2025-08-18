@@ -185,7 +185,7 @@ export default function LandingPage() {
 
                 <div className="text-center mt-32">
                   <Button onClick={() => setOpen(false)} className="mt-4 text-white text-center gap-2">
-                  <span>Close <br/><X className="w-4 h-4" /></span> 
+                  <span>Close <br/><X className="w-4 h-4 ml-2" /></span> 
                   
                 </Button>
                 </div>
