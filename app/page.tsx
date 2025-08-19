@@ -1,17 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Volume2, VolumeX, Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogOverlay, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Navigation from "@/components/common/Navigation";
 
 export default function LandingPage() {
-  const [muted, setMuted] = useState(true);
   const [open, setOpen] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   // Animation variants for cinematic text reveal
   const letterAnimation: Variants = {
@@ -43,7 +48,7 @@ export default function LandingPage() {
         src="/assets/video/moc-video.mp4"
         autoPlay
         loop
-        muted={muted}
+        muted= {muted}
       />
 
       {/* Overlay with Fade-in Animation */}
@@ -54,31 +59,8 @@ export default function LandingPage() {
         className="absolute inset-0 bg-black"
       />
 
-           {/* Vertical Navigation (Left side) */}
-      <div className="absolute inset-y-0 left-0 flex flex-col items-center justify-between py-6 text-white text-xs tracking-wide border-r-2 border-gray-300 z-20">
-        {/* Top Text */}
-        <span className="rotate-180 [writing-mode:vertical-rl]">
-          By Kachi Benson
-        </span>
-
-        {/* Menu Icon */}
-        <button className="p-2 hover:text-yellow-500 transition cursor-pointer">
-          <Menu size={24} />
-        </button>
-
-        {/* Bottom Text + Sound Toggle */}
-        <div className="flex flex-col items-center space-y-4">
-          <span className="rotate-180 [writing-mode:vertical-rl] text-center">
-            Powered by Wives of Rhoda Foundation
-          </span>
-          <button
-            onClick={() => setMuted(!muted)}
-            className="hover:text-yellow-500 transition"
-          >
-            {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-          </button>
-        </div>
-      </div>
+      {/* Navigation Component */}
+      <Navigation muted={muted} setMuted={setMuted} />
 
       {/* Top Right Logo */}
       <motion.div
@@ -87,7 +69,12 @@ export default function LandingPage() {
         transition={{ duration: 1 }}
         className="absolute top-4 right-6 text-white font-bold text-xl"
       >
-        <Image src="/assets/images/moc-logo.png" alt="Mothers of Chibok Awards" width={80} height={80} />
+        <Image
+          src="/assets/images/moc-logo.png"
+          alt="Mothers of Chibok Awards"
+          width={80}
+          height={80}
+        />
       </motion.div>
 
       {/* Center Content */}
@@ -99,7 +86,12 @@ export default function LandingPage() {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-4"
         >
-          <Image src="/assets/images/moc-awards-logo.png" alt="Mothers of Chibok Awards" width={150} height={150} />
+          <Image
+            src="/assets/images/moc-awards-logo.png"
+            alt="Mothers of Chibok Awards"
+            width={150}
+            height={150}
+          />
         </motion.div>
 
         {/* Title with cinematic reveal */}
@@ -163,17 +155,27 @@ export default function LandingPage() {
                 className="p-6 sm:p-10"
               >
                 <p className="text-gray-200 mb-10 text-sm">
-                  <span className="pl-20">The headlines may have faded, and the world may have moved on</span><br/>
-                  <span className="pl-10">But in Chibok, the mothers still carry faith like a seed in their hands.</span> <br/>
-                  <span className="pl-24">Send them a short message of hope as they continue to wait.</span>
+                  <span className="pl-20">
+                    The headlines may have faded, and the world may have moved
+                    on
+                  </span>
+                  <br />
+                  <span className="pl-10">
+                    But in Chibok, the mothers still carry faith like a seed in
+                    their hands.
+                  </span>{" "}
+                  <br />
+                  <span className="pl-24">
+                    Send them a short message of hope as they continue to wait.
+                  </span>
                 </p>
                 <div className="mt-4 space-y-4 max-w-md mx-auto">
-                  <Input 
+                  <Input
                     type="text"
                     placeholder="Enter your full name"
                     className="w-full p-3 bg-gray-800 text-white placeholder-gray-500 rounded-md"
                   />
-                  <Input 
+                  <Input
                     type="email"
                     placeholder="Enter your email address"
                     className="w-full p-3 bg-gray-800 text-white placeholder-gray-500 rounded-md"
@@ -184,12 +186,16 @@ export default function LandingPage() {
                 </div>
 
                 <div className="text-center mt-32">
-                  <Button onClick={() => setOpen(false)} className="mt-4 text-white text-center gap-2">
-                  <span>Close <br/><X className="w-4 h-4 ml-2" /></span> 
-                  
-                </Button>
+                  <Button
+                    onClick={() => setOpen(false)}
+                    className="mt-4 text-white text-center gap-2"
+                  >
+                    <span>
+                      Close <br />
+                      <X className="w-4 h-4 ml-2" />
+                    </span>
+                  </Button>
                 </div>
-                
               </motion.div>
             </DialogContent>
           )}
@@ -219,7 +225,7 @@ export default function LandingPage() {
         className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs uppercase tracking-wider z-10"
       >
         <a href="#" className="cursor-pointer">
-          Scroll <br/>
+          Scroll <br />
           <span className="ml-4 animate-bounce ">↓</span>
         </a>
       </motion.div>
