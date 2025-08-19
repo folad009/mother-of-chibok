@@ -97,13 +97,13 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-6 space-y-2"
+          className="mb-4"
         >
           <Image src="/assets/images/moc-awards-logo.png" alt="Mothers of Chibok Awards" width={150} height={150} />
         </motion.div>
 
         {/* Title with cinematic reveal */}
-        <h1 className="text-5xl font-bold mb-4 tracking-wide font-[Cinzel] flex flex-wrap justify-center">
+        <h1 className="text-4xl sm:text-5xl md:text-[100px] font-afolkalips flex flex-wrap justify-center text-gray-200">
           {title.split("").map((char, i) => (
             <motion.span
               key={i}
@@ -119,7 +119,7 @@ export default function LandingPage() {
         </h1>
 
         {/* Subtitle with fade-in word sequence */}
-        <p className="text-lg max-w-2xl mb-6 flex flex-wrap justify-center">
+        <p className="text-lg max-w-xs sm:max-w-md md:max-w-2xl mb-6 -mt-3 flex flex-wrap justify-center text-gray-200">
           {subtitle.split(" ").map((word, i) => (
             <motion.span
               key={i}
@@ -139,7 +139,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="bg-[#B89C58] hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-semibold"
+          className="bg-[#B89C58] hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-medium"
           onClick={() => setOpen(true)}
         >
           Follow the journey
@@ -201,7 +201,7 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-6 right-6 text-sm text-white"
+        className="absolute bottom-6 right-6 text-sm text-white z-10"
       >
         Hope, resilience, and healing.
       </motion.div>
@@ -219,7 +219,8 @@ export default function LandingPage() {
         className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs uppercase tracking-wider z-10"
       >
         <a href="#" className="cursor-pointer">
-          Scroll
+          Scroll <br/>
+          <span className="ml-4 animate-bounce ">↓</span>
         </a>
       </motion.div>
     </div>

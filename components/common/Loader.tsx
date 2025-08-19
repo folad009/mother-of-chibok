@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface LoaderProps {
@@ -21,6 +22,7 @@ export default function Loader({ onFinish }: LoaderProps) {
   const sentenceRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const logoRef = useRef<HTMLImageElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [dots, setDots] = useState<Dot[]>([]);
 
@@ -42,7 +44,7 @@ export default function Loader({ onFinish }: LoaderProps) {
 
   useEffect(() => {
     const tl = gsap.timeline({
-      onUpdate: () => setProgress(Math.round(tl.progress() * 100))
+      onUpdate: () => setProgress(Math.round(tl.progress() * 100)),
     });
 
     // Vertical line/progress
@@ -54,6 +56,34 @@ export default function Loader({ onFinish }: LoaderProps) {
         duration: 3,
         ease: "slow(0.9, 0.9, false)",
       }
+    );
+
+    // logo appears
+    tl.fromTo(
+      logoRef.current,
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" },
+      "-=2.5"
+    );
+
+    // pulse while the logo is visible
+    tl.to(
+      logoRef.current,
+      {
+        scale: 1.1,
+        duration: 0.8,
+        yoyo: true,
+        repeat: 2,
+        ease: "power1.inOut",
+      },
+      "-=1"
+    );
+
+    // logo fades out
+    tl.to(
+      logoRef.current,
+      { opacity: 0, duration: 0.8, ease: "power2.inOut" },
+      "+=0.5"
     );
 
     // Paragraph spans: distinct X/Y per span + stagger
@@ -129,6 +159,11 @@ export default function Loader({ onFinish }: LoaderProps) {
   }, [dots]);
 
   const handleExit = () => {
+     if (!containerRef.current) {
+    onFinish();
+    return;
+  }
+
     gsap.to(containerRef.current, {
       opacity: 0,
       duration: 1,
@@ -163,12 +198,24 @@ export default function Loader({ onFinish }: LoaderProps) {
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full space-y-6 px-6">
         {/* Line + progress */}
         <div className="absolute left-8 top-0 bottom-0 flex flex-col items-center justify-between py-4">
-          
           <div
             ref={lineRef}
             className="w-px h-full bg-white origin-top scale-y-0"
           />
           <span className="text-sm text-gray-300">{progress}%</span>
+        </div>
+
+        {/* Logo */}
+        <div
+          ref={logoRef}
+          className="absolute inset-0 flex items-center justify-center opacity-0 z-20"
+        >
+          <Image
+            src="/assets/images/moc-logo.png"
+            alt="Mothers of Chibok Awards"
+            width={50}
+            height={50}
+          />
         </div>
 
         {/* Paragraph: 4 spans, each with its own padding */}
@@ -189,12 +236,11 @@ export default function Loader({ onFinish }: LoaderProps) {
           ))}
         </div>
 
-
         {/* Button */}
         <button
           ref={buttonRef}
-          onClick={handleExit}
-          className="absolute bottom-8 px-6 py-3 flex items-center gap-3 text-md text-white transition-opacity opacity-0"
+          onClick= {handleExit}
+          className="absolute bottom-8 px-6 py-3 flex items-center gap-3 text-md text-white transition-opacity opacity-0 z-30"
         >
           Enter the site{" "}
           <ArrowRight className="w-4 h-4 bg-white rounded-full text-black" />

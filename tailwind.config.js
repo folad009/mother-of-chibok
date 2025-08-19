@@ -7,7 +7,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: { extend: {} },
+  theme: { extend: {
+    fontFamily: {
+        afolkalips: ["var(--font-afolkalips)", "sans-serif"],
+      },
+  } },
   plugins: [],
 }
 
