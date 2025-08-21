@@ -31,10 +31,10 @@ export default function Loader({ onFinish }: LoaderProps) {
 
   // Per-span styling + entry offsets
   const SPAN_CONFIG = [
-    { padding: "pl-32", from: { x: 40, y: 12 } }, 
-    { padding: "pl-0", from: { x: -32, y: 16 } }, 
-    { padding: "pl-0", from: { x: 28, y: -18 } }, 
-    { padding: "pl-0", from: { x: -44, y: -10 } },
+    { padding: "pl-32", from: { x: 0, y: 0 } }, 
+    { padding: "pl-0", from: { x: 0, y: 0  } }, 
+    { padding: "pl-0", from: { x: 0, y: 0  } }, 
+    { padding: "pl-0", from: { x: 0, y: 0  } },
     { padding: "pl-16", from: { x: 0, y: 0 } },
     { padding: "pl-32", from: { x: 0, y: 0 } },
     { padding: "pl-32", from: { x: 0, y: 0 } },
@@ -93,7 +93,7 @@ export default function Loader({ onFinish }: LoaderProps) {
         opacity: 1,
         duration: 2,
         ease: "power3.out",
-        stagger: 0.7, // cascade
+        stagger: 0.9, // cascade
       },
       "+=0.2"
     );
