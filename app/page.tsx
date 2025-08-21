@@ -4,11 +4,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import Image from "next/image";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,19 +32,19 @@ export default function LandingPage() {
     }),
   };
 
-  const title = "MOTHERS OF CHIBOK";
+  const title = "Mothers of Chibok";
   const subtitle =
     "A story of hope, resilience, and healing, through mothers, memory, and peanuts";
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden border-l-2 border-gray-300">
+    <div className="relative w-screen h-screen overflow-hidden">
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
         src="/assets/video/moc-video.mp4"
         autoPlay
         loop
-        muted= {muted}
+        muted={muted}
       />
 
       {/* Overlay with Fade-in Animation */}
@@ -78,13 +74,13 @@ export default function LandingPage() {
       </motion.div>
 
       {/* Center Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
+      <div className="relative z-10 flex flex-col items-center  h-full text-center text-white px-6">
         {/* Awards Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-4"
+          className="mb-2"
         >
           <Image
             src="/assets/images/moc-awards-logo.png"
@@ -95,7 +91,7 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Title with cinematic reveal */}
-        <h1 className="text-4xl sm:text-5xl md:text-[100px] font-afolkalips flex flex-wrap justify-center text-gray-200">
+        <h1 className="text-4xl sm:text-5xl md:text-[165px] font-afolkalips tracking-tight4 leading-0 flex flex-wrap justify-center text-white">
           {title.split("").map((char, i) => (
             <motion.span
               key={i}
@@ -111,7 +107,7 @@ export default function LandingPage() {
         </h1>
 
         {/* Subtitle with fade-in word sequence */}
-        <p className="text-lg max-w-xs sm:max-w-md md:max-w-2xl mb-6 -mt-3 flex flex-wrap justify-center text-gray-200">
+        <p className="text-[21px] tracking-tight3 font-normal max-w-xs sm:max-w-md md:max-w-3xl -mt-7 mb-2 flex flex-wrap font-productsFont text-white">
           {subtitle.split(" ").map((word, i) => (
             <motion.span
               key={i}
@@ -131,7 +127,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="bg-[#B89C58] hover:bg-yellow-600 text-white px-6 py-3 rounded-md font-medium"
+          className="bg-[#B89C58] hover:bg-yellow-600 text-white font-productsFont tracking-tight3 px-6 py-2 font-medium text-[18px]"
           onClick={() => setOpen(true)}
         >
           Follow the journey
@@ -207,7 +203,7 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-6 right-6 text-sm text-white z-10"
+        className="absolute bottom-6 right-6 text-[18px] text-white tracking-tight3 z-10"
       >
         Hope, resilience, and healing.
       </motion.div>
@@ -217,16 +213,20 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
-          duration: 1,
+          duration: 2,
           delay: 2.2,
           repeat: Infinity,
           repeatType: "reverse",
+          repeatDelay: 1,
         }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs uppercase tracking-wider z-10"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 text-white text-[18px] tracking-tight3 z-10"
       >
-        <a href="#" className="cursor-pointer">
-          Scroll <br />
-          <span className="ml-4 animate-bounce ">↓</span>
+        <a
+          href="#"
+          className="cursor-pointer text-center flex flex-col items-center"
+        >
+          <span>Scroll</span>
+          <span className="-mt-2">↓</span>
         </a>
       </motion.div>
     </div>

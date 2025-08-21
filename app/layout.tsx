@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { afolkalips } from "./fonts";
+import { afolkalips, hahmlet, productsFont } from "./fonts";
 import ClientLayout from "./ClientLayout";
 
 const geistSans = Geist({
@@ -26,7 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${afolkalips.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${afolkalips.variable} ${hahmlet.variable} ${productsFont.variable}`}
+      >
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
